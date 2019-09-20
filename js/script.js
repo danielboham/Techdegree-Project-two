@@ -4,7 +4,7 @@ FSJS project 2 - List Filter and Pagination
 ******************************************/
 
 // Global variables
-const studentList = document.querySelectorAll('li');
+const studentList = document.querySelectorAll('.student-item');
 const itemsNumber = 10;
 
 /***
@@ -25,19 +25,19 @@ const itemsNumber = 10;
 
 // showPage function
 const showPage = (list, page) => {
-    let startIndex = (1 * itemsNumber) - itemsNumber;
-    let endIndex = 1 * itemsNumber;
+    let startIndex = (page * itemsNumber) - itemsNumber;
+    let endIndex = page * itemsNumber;
 
-    for (let i = 0; i <= studentList.length; i +=1) {
+    for (let i = 0; i <= studentList.length; i +=1)
        if (i >= startIndex && i < endIndex) {
            studentList[i].style.display = "block";
        } else {
            studentList[i].style.display = "none";
        }
     }
-}
 
-showPage();
+
+    showPage(studentList, 2);
 
 
 /*** 
@@ -45,7 +45,12 @@ showPage();
    functionality to the pagination buttons.
 ***/
 
-const​ appendPageLinks = ​(​list)​ ​ => ​{
+const appendPageLinks = (list) => {
+    let pages = Math.ceil(studentList.length / itemsNumber)
 
+    let parntDiv = document.querySelector(".page")
+    let divApp = document.createElement('div');
+    divApp.className = "pagination";
+    parntDiv.appendChild(divApp);
 
-
+}

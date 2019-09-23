@@ -24,46 +24,68 @@ const itemsNumber = 10;
 
 
 // showPage function
-const showPage = (list, page) => {
+const showPage = (studentList, page) => {
     let startIndex = (page * itemsNumber) - itemsNumber;
     let endIndex = page * itemsNumber;
 
-    for (let i = 0; i <= studentList.length; i +=1)
+    for (let i = 0; i <= studentList.length; i += 1) {
        if (i >= startIndex && i < endIndex) {
            studentList[i].style.display = "block";
        } else {
            studentList[i].style.display = "none";
        }
-    }
+    };
+}
 
-
-    showPage(studentList,1);
+showPage(studentList, 1);
 
 
 //appendPageLinks function
-const appendPageLinks = (list) => {
+const appendPageLinks = (list) =>
+{
     let pages = Math.ceil(studentList.length / itemsNumber)
 
     let parntDiv = document.querySelector(".page")
     let divApp = document.createElement('div');
-    divApp.className = "pagination";
-    parntDiv.appendChild(divApp);
     let ulApp = document.createElement('ul');
+
+
+    parntDiv.appendChild(divApp);
     divApp.appendChild(ulApp);
 
-    for (let i=1; i <= pages; i +=1) {
-        let liApp = document.createElement('li');
-        ulApp.appendChild(liApp);
-        let aApp = document.createElement('a');
+    divApp.setAttribute("class","pagination");
+
+    for (let i = 1; i <= pages; i += 1) {
+        var liApp = document.createElement('li');
+        var aApp = document.createElement('a');
+
         aApp.href = "#";
         aApp.textContent = [i];
-       if (aApp.textContent === "1") {
-           aApp.className = "active";
-       } else aApp.className = " ";
+        ulApp.appendChild(liApp);
+        liApp.appendChild(aApp);
 
-       liApp.appendChild(aApp);
+        if (aApp.textContent === "1") {
+            aApp.className = "active";
+        }
     }
 
+    /*divApp.addEventListener('click', (e) => {
+     if (e.target.tagName == 'A') {
+     let aLink = event.target;
+     let aNumber = aLink.textContent;
 
+     for (let i = 1; i <= pages; i += 1) {
+     if (aApp[i].textContent === 1) {
+     aApp[i].classList.add('active');
+     } else {
+     aApp[i].classList.remove('active');
+     }
+     }
+
+     }
+     });*/
 
 }
+
+appendPageLinks(studentList);
+

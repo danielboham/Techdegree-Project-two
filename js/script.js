@@ -20,7 +20,7 @@ const showPage = (list, page) => {
             studentList[i].style.display = "block";
         }
     }
-}
+};
 
 //appendPageLinks function
 const appendPageLinks = (list) =>
@@ -38,8 +38,8 @@ const appendPageLinks = (list) =>
     div.setAttribute("class", "pagination");
 
     for (let i = 1; i <= pages; i += 1) {
-        var li = document.createElement('li');
-        var anchor = document.createElement('a');
+        const li = document.createElement('li');
+        const anchor = document.createElement('a');
 
         anchor.href = "#";
         anchor.textContent = [i];
@@ -49,14 +49,14 @@ const appendPageLinks = (list) =>
         if (anchor.textContent === "1") {
             anchor.className = "active";
         }
-    };
+    }
 
 
     div.addEventListener("click", (e) => {
     let pagination = e.target;
-    let paginationNumber = e.target.textContent;
+    let paginationNumber = pagination.textContent;
 
-    var a = document.querySelectorAll("a");
+    const a = document.querySelectorAll("a");
     for(let i = 0; i< a.length; i += 1) {
         if (a[i].textContent === paginationNumber) {
             a[i].classList.add('active');
@@ -67,7 +67,7 @@ const appendPageLinks = (list) =>
         }
         showPage(studentList, paginationNumber);
     });
-}
+};
 
 showPage(studentList,  1);
 appendPageLinks(studentList);
